@@ -17,10 +17,13 @@
 			  <a href="<%= url(:toc, :language => language) %>"
 			    >table of contents</a></div>
 			
+		
+			<div class="toc-link"><a href="<%= url(:toc, :language => language) %>">table of contents</a></div>
+			<%= turn_page('fwd') %>
+      
 			<div id="language-switch">
 				<%= language_switch %>
 			</div>
-
 			<div id="book-content">
 				<%= catch_content :for_layout %>
 			</div>
