@@ -56,7 +56,22 @@ div.maruku_toc{
 	float:right;
 	display: block;
 }
+.tree{
+	float:right;
+	width:100px;
+	height:auto;
+	margin-right:-9em;
+	margin-top:2em;
+	text-align:right;
+}
 
+.tree_chapter{
+	
+}
+
+.tree_page{
+	
+}
 #language-switch{
 	float:left;
 	color: #999999;

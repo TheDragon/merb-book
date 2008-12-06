@@ -11,16 +11,16 @@
 
 		<div id="book-title"><a href="/">The Merb Open Source Book</a></div>
 		<div id="book">
+		
 			<div class="toc-link"><a href="<%= url(:toc, :language => language) %>">table of contents</a></div>
-			
+			<%= turn_page('fwd') %>
+      
 			<div id="language-switch">
 				<%= language_switch %>
 			</div>
-
 			<div id="book-content">
 				<%= catch_content :for_layout %>
 			</div>
-			
 		</div>
     
 		<div id="footer">
