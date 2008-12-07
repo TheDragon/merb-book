@@ -15,7 +15,27 @@ module Merb
         "<a href='#{href}'>#{lang[:name]}</a>" unless lang[:code] == language
       end.compact.join(" | ")
     end
-
+    
+    def turn_page(direction,format='markdown')
+      case direction
+      when 'fwd'
+        if params[:chapter]
+          tree = "<div class='tree'><div class='tree_chapter'><a href='#{url(:page, params[:language], params[:chapter])}'>#{params[:chapter]}</a></div>"
+          pages_tree = pages_in_chapter(params[:chapter]).each do |branch|
+            unless branch == params[:page_name]
+              tree += "<div class='tree_page'><a href='#{url(:page, params[:language], params[:chapter], branch)}'>#{branch}</a></div>"
+            else
+              tree += "<div class='tree_page'>#{branch}</div>"
+            end
+          end
+          tree += '</div>'
+          tree
+        end
+      when 'back'
+        # backward
+      end
+    end
+    
     # Returns links to the previous and next pages.
     def page_nav_links(format = 'markdown')
       return unless params[:action] == 'show' # Don't need navigation for the TOC (index).
@@ -94,27 +114,8 @@ module Merb
     end
     
     # friendly chapter navigation
-    public def turn_page(direction,format='markdown')
-      case direction
-      when 'fwd'
-        if params[:chapter]
-          tree = "<div class='tree'><div class='tree_chapter'><a href='#{url(:page, params[:language], params[:chapter])}'>#{params[:chapter]}</a></div>"
-          pages_tree = pages_in_chapter(params[:chapter]).each do |branch|
-            unless branch == params[:page_name]
-              tree += "<div class='tree_page'><a href='#{url(:page, params[:language], params[:chapter], branch)}'>#{branch}</a></div>"
-            else
-              tree += "<div class='tree_page'>#{branch}</div>"
-            end
-          end
-          tree += '</div>'
-          tree
-        end
-      when 'back'
-        # backward
-      end
-    end
+
     
-    private
     
     def forward
       debugger
