@@ -16,6 +16,11 @@ module Merb
       end.compact.join(" | ")
     end
     
+        link_to lang[:name], lang[:code] unless lang[:code] == language
+      end.compact.join(" | ")
+    end
+    
+    # friendly chapter navigation
     def turn_page(direction,format='markdown')
       case direction
       when 'fwd'
@@ -116,6 +121,7 @@ module Merb
     # friendly chapter navigation
 
     
+    private
     
     def forward
       debugger
